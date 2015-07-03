@@ -28,7 +28,6 @@
 
     <li class="mkt-nav-root--divider"></li>
 
-    {{ nav_item_settings(url('feedback'), _('Feedback'), 'feedback') }}
     {{ nav_item_settings('#', _('Register'), 'register',
                          'nav--settings--logged-out', 'persona register') }}
     {{ nav_item_settings('#', _('Sign In'), 'login',
@@ -37,6 +36,7 @@
                          'nav--settings--logged-in') }}
     {{ nav_item_settings(url('purchases'), _('My Apps'), 'purchases',
                          'nav--settings--logged-in') }}
+    {{ nav_item_settings(url('feedback'), _('Feedback'), 'feedback') }}
     {{ nav_item_settings('#', _('Sign Out'), 'logout',
                          'nav--settings--logged-in', 'logout') }}
   </mkt-nav-root>
@@ -46,6 +46,8 @@
   </mkt-nav-child>
 
   <mkt-nav-child-toggle>
-    <button class="mkt-nav--back"></button>
+    <button class="mkt-nav--back">
+      <b/><b/><b/>
+    </button>
   </mkt-nav-child-toggle>
 </mkt-nav>

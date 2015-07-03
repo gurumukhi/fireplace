@@ -14,16 +14,16 @@ define('desktop_promo',
         },
         promoItems: [
             {
-                name: 'esc-4-home',
-                url: urls.reverse('app', ['esc-4-home']),
-                // L10n: Esc 4 Home app desktop promo (bug 1166114).
-                text: gettext('Escape from the worst boss ever.'),
+                name: 'chess-1',
+                url: urls.reverse('app', ['chess-1']),
+                // L10n: Chess game desktop promo (bug 1175381).
+                text: gettext('Play 45 creative variations of chess.'),
             },
             {
-                name: 'irccloud',
-                url: urls.reverse('app', ['irccloud']),
-                // L10n: IRCCloud app desktop promo (bug 1166114).
-                text: gettext('Manage all your messages in one place.'),
+                name: 'basecamp',
+                url: urls.reverse('app', ['basecamp']),
+                // L10n: Basecamp program desktop promo (bug 1175381).
+                text: gettext('Manage projects easily with Basecamp.'),
             },
             {
                 name: 'productivity',
@@ -40,10 +40,10 @@ define('desktop_promo',
                 text: gettext('Games & Entertainment Apps—Desktop Essentials'),
             },
             {
-                name: 'monster-wants-candy',
-                url: urls.reverse('app', ['monster-wants-candy']),
-                // L10n: Monster Wants Candy app desktop promo (bug 1166114).
-                text: gettext('Save the girl, get the candy!'),
+                name: 'goldnuggets',
+                url: urls.reverse('app', ['goldnuggets']),
+                // L10n: GoldNuggets game desktop promo (bug 1175381).
+                text: gettext('Play GoldNuggets now!'),
             },
         ].map(function(item) {
             item.url = utils.urlparams(item.url, {

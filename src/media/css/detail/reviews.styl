@@ -23,12 +23,12 @@
     text-align: center;
     padding: 30px 0;
 
-    .stars {
-        margin-bottom: 20px;
+    .stars-wrapper {
         transform: scale(2.5);
+        display: inline-block;
 
         +rtl() {
-            transform: scale(-2.5, 2.5)
+            transform: scale(-2.5, 2.5);
         }
     }
     p {
@@ -51,11 +51,13 @@
         padding-bottom: 30px;
         position: absolute;
         top: 0;
-        right: 110px;
+        width: 163px;
 
+        +ltr() {
+            right: 65px;
+        }
         +rtl() {
-            left: 75px;
-            right: inherit;
+            left: 65px;
         }
     }
     [data-page-type~="detail"] .reviews-summary-large {

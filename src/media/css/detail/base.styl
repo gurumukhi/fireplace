@@ -47,6 +47,11 @@
     display: none;
 }
 
+.website-detail--category-link,
+.website-report-issue a {
+    font-weight: 500;
+}
+
 .website-report-issue .button,
 .app-report-abuse .button {
     display: block;
@@ -77,8 +82,13 @@
     }
     .detail-left-side {
         width: unquote('calc(100% - 300px)');
-        margin-bottom: 0;
-        margin-right: 30px;
+
+        +ltr() {
+            margin-right: 30px;
+        }
+        +rtl() {
+            margin-left: 30px;
+        }
     }
     .detail-right-side {
         width: $mobile-content-width;
@@ -99,6 +109,9 @@
     .detail {
         padding: 0;
         overflow: hidden;
+    }
+    .detail-left-side {
+        margin-bottom: 0;
     }
     .secondary-header .leading {
         background-image: linear-gradient($greyscale-white, $greyscale-light-grey);

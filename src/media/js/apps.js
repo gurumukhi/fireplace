@@ -4,10 +4,10 @@
 define('apps',
     ['categories', 'core/capabilities', 'core/defer', 'installer_direct',
      'installer_iframe', 'installer_mock', 'core/l10n', 'core/nunjucks',
-     'core/settings', 'underscore', 'core/utils', 'core/z'],
+     'core/settings', 'underscore', 'core/urls', 'core/utils', 'core/z'],
     function(categories, capabilities, defer, installer_direct,
              installer_iframe, InstallerMock, l10n, nunjucks,
-             settings, _, utils, z) {
+             settings, _, urls, utils, z) {
     'use strict';
     var gettext = l10n.gettext;
     var installer;
@@ -55,6 +55,7 @@ define('apps',
 
         // Bug 996150 for packaged Marketplace installing packaged apps.
         installer.install(product, opt).done(function(result, product) {
+            z.page.trigger('install-success', {slug: product.slug});
             def.resolve(result, product);
             if (z.apps.indexOf(product.manifest_url) === -1) {
                 z.apps.push(product.manifest_url);
@@ -112,7 +113,7 @@ define('apps',
         if (product.payment_required && !product.price) {
             reasons.push(gettext('not available for your region'));
         }
-        if (!capabilities.webApps ||
+        if (!product.isWebsite && !capabilities.webApps ||
             (!capabilities.packagedWebApps && product.is_packaged) ||
             !_.contains(product.device_types, device)) {
             reasons.push(gettext('not available for your platform'));
@@ -123,9 +124,18 @@ define('apps',
     }
 
     function transform(app) {
+        if (app.__transformed) {
+            return app;
+        }
         if (app.categories) {
+            // Transform categories to get a list of objects instead of a list
+            // of slugs, to be able to display the translated category names
+            // on the detail page.
             app.categories = categories.filter(function(category) {
                 return app.categories.indexOf(category.slug) !== -1;
+            }).map(function(category) {
+                return _.extend({url: urls.reverse('category', [category.slug])},
+                                category);
             });
         }
         // Normalize content types.
@@ -140,6 +150,7 @@ define('apps',
             app.short_name = app.name;
             app.key = app.slug;
         }
+        app.__transformed = true;
         return app;
     }
 

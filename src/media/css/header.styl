@@ -16,17 +16,25 @@ mkt-header-nav {
     order: 3;
 
     +media--wide-tablet() {
-        margin-right: 60px;
+        margin: 0 30px;
     }
 }
 .header--settings-toggle {
     order: 4;
+
+    +media--wide-tablet() {
+        margin: 0 30px;
+    }
 }
 .mkt-header--register {
     order: 5;
 }
 .mkt-header--login {
     order: 6;
+
+    +media--wide-tablet() {
+        margin: 0 30px 0 0;
+    }
 }
 
 // Add header's height back as padding. Overridden when header not fixed.
@@ -55,11 +63,7 @@ body {
     min-height: 60px;
     padding: 0 5px;
     position: relative;
-    z-index: $zindex--header;
 
-    +media--wide-tablet() {
-        padding: 0 40px;
-    }
     +rtl() {
         // Keep the back and menu button on the left when RTL.
         flex-direction: row-reverse;
@@ -83,6 +87,7 @@ body {
 
         +media--wide-tablet() {
             image-replacement('../img/nav/header-logo-beta.svg', 34px, 42px);
+            margin: 0 30px;
         }
     }
     // Project name, appearing to the right of the Marketplace logo.
@@ -219,7 +224,7 @@ body > .banners mkt-banner {
     h1,
     a {
         line-height: 37px;
-        padding: 10px;
+        padding: 20px;
     }
 }
 
@@ -293,7 +298,7 @@ body > .banners mkt-banner {
 #site-header .mkt-header--title {
     display: none;
 }
-[data-page-type~=leaf] {
+[data-meow--enabled=true][data-page-type~=leaf] {
     #site-header .site,
     #site-header .header--search-toggle {
         display: none;
@@ -429,6 +434,11 @@ body > .banners mkt-banner {
     }
     .desktop .wordmark {
         background: url(../img/pretty/marketplace-beta-logo.png) no-repeat 0 50% / 231px auto;
+    }
+    #site-header {
+        +rtl() {
+            flex-direction: row;
+        }
     }
 }
 

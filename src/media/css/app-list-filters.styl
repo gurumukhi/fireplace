@@ -15,7 +15,6 @@ App listing filters.
 
     +media--base-tablet() {
         bottom: 0;
-        border-bottom: 2px solid $greyscale-light-grey;
         padding: 0 0 30px;
         max-width: $desktop-content;
 
@@ -26,11 +25,12 @@ App listing filters.
 }
 
 .app-list-filters-sort {
+    border-bottom: 1px solid $greyscale-light-grey;
     display: none;
-    margin-bottom: 5px;
     width: 100%;
 
     +media--base-tablet() {
+        border: none;
         width: auto;
 
         +ltr() {
@@ -45,20 +45,20 @@ App listing filters.
         display: inline-block;
         ellipsis();
         font-size: 15px;
-        font-weight: 300;
-        height: 29px;
-        line-height: 29px;
-        margin-top: 7px;
+        height: 40px;
+        line-height: 40px;
         position: relative;
         text-align: center;
         text-decoration: none;
         text-shadow: 0 .5px 1px $white;
-        z-index: 2;
         vertical-align: middle;
+        width: 50%;
+        z-index: 2;
 
         +media--base-tablet() {
             margin-top: 0;
             text-shadow: none;
+            width: auto;
         }
         &:hover {
             text-decoration: underline;
@@ -73,12 +73,14 @@ App listing filters.
             background-color: $white;
         }
         + a {
-            +ltr() {
-                margin-left: 30px;
-            }
-            +rtl() {
-                margin-right: 30px;
-            }
+            +media--base-tablet() {
+                +ltr() {
+                    margin-left: 30px;
+                }
+                +rtl() {
+                    margin-right: 30px;
+                }
+                }
         }
     }
 }
@@ -90,15 +92,11 @@ App listing filters.
 
     +media--base-tablet() {
         margin-top: 15px;
-
-        > div {
-            float: left;
-        }
     }
 }
 
 .app-list-filters-expand-toggle {
-    background: url(../img/pretty/list-toggle.svg) no-repeat 0 0 / 82px auto;
+    background: url(../img/pretty/list-toggle.svg) no-repeat 0 0 / 82px 80px;
     display: none;
     float: right;
     height: 40px;
@@ -138,10 +136,19 @@ App listing filters.
     }
 }
 
-[data-meow--enabled="false"] .app-list-filters {
+.app-list-filters {
     display: none;
 
     +media--base-tablet() {
         display: block;
+    }
+}
+
+@media $base-tablet {
+    .app-list-filters {
+        border-bottom: 2px solid $greyscale-light-grey;
+    }
+    .search-empty .app-list-filters {
+        border: 0;
     }
 }
